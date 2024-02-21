@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd 
 from matplotlib import pyplot as plt 
+import time
 
 plt.style.use("ggplot")
 
@@ -39,3 +40,22 @@ if rad=="Home":
 
 if rad=="About Us":
     st.write("yOU ARE AT ABOUT US PAGE")
+
+
+#Progress and status
+#ANIMATIONS
+
+#STATUS
+st.error("Error")
+st.success("Success")
+st.info("Information")
+st.exception(RuntimeError("this is an error"))
+st.warning("warning")
+
+#PROGRESS BAR
+progress = st.progress(0)      #initialize with 0
+for i in range(100):
+    time.sleep(0.2)
+    progress.progress(i+1)
+
+st.balloons()       #balloon animation
