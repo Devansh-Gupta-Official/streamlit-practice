@@ -15,15 +15,27 @@ df = pd.DataFrame(data = data)
 
 
 #sidebar
-st.sidebar.selectbox("Select a number",[1,2,3,4,5])    #selectbox widget in sidebar
-col = st.sidebar.selectbox("Select a column",df.columns)    
+# st.sidebar.selectbox("Select a number",[1,2,3,4,5])    #selectbox widget in sidebar
+# col = st.sidebar.selectbox("Select a column",df.columns)    
 
-plt.plot(df['num'],df[col])
-st.set_option('deprecation.showPyplotGlobalUse', False)    #to remove error in web page
-st.pyplot()
+# plt.plot(df['num'],df[col])
+# st.set_option('deprecation.showPyplotGlobalUse', False)    #to remove error in web page
+# st.pyplot()
 
 
-col1 = st.sidebar.multiselect("Select a column",df.columns)
-plt.plot(df['num'],df[col1])
-st.set_option('deprecation.showPyplotGlobalUse', False)    #to remove error in web page
-st.pyplot()
+# col1 = st.sidebar.multiselect("Select a column",df.columns)
+# plt.plot(df['num'],df[col1])
+# st.set_option('deprecation.showPyplotGlobalUse', False)    #to remove error in web page
+# st.pyplot()
+
+
+#navigation bar
+rad = st.sidebar.radio("Navigation",["Home","About Us"])
+if rad=="Home":
+    col1 = st.sidebar.multiselect("Select a column",df.columns)
+    plt.plot(df['num'],df[col1])
+    st.set_option('deprecation.showPyplotGlobalUse', False)    #to remove error in web page
+    st.pyplot()
+
+if rad=="About Us":
+    st.write("yOU ARE AT ABOUT US PAGE")
