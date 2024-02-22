@@ -6,6 +6,14 @@ import plotly.graph_objs as go     #used for interactive graphs
 
 data = pd.read_csv('../practice-scripts/Salary_Data.csv')
 
+#MAKING MACHINE LEARNING MODEL FOR PREDICTION PAGE
+from sklearn.linear_model import LinearRegression
+import numpy as np
+x=np.array(data['YearsExperience']).reshape(-1,1)
+lr=LinearRegression()
+lr.fit(x,np.array(data['Salary']))
+
+
 st.title("Salary Predictor")
 
 nav = st.sidebar.radio("Navigation",["Home","Prediction","Contribute to Dataset"])
@@ -43,7 +51,13 @@ if nav=="Home":
 
 
 if nav=="Prediction":
-    st.write("pred")
+    st.header("Know your Salary")
+    vall = st.number_input("Enter your Experience",0.00,20.00,step=0.25)
+    vall=np.array(vall).reshape(1,-1)
+    pred=lr.predict(vall)[0]
+
+    if st.button('Predict'):
+        st.success(f"Your Predicted Salary is {round(pred)}")
 
 if nav=="Contribute to Dataset":
     st.write("contri")
